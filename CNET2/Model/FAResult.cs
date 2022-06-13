@@ -17,12 +17,8 @@
         /// </summary>
         public Dictionary<string, int> Words { get; set; }
 
-        public override string ToString()
-        {
-            return $"{Source} {Words?.Count}";
-            
+        public override string ToString() => $"{Source} {Words?.Count}";
 
-        }
     }
 
     public enum SourceType
