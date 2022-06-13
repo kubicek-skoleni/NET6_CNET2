@@ -1,21 +1,24 @@
-﻿using Model;
+﻿using Data;
+using Model;
 
 Console.WriteLine("Hello, World!");
 
+var booksdir = @"C:\Users\StudentEN\source\repos\kubicek-skoleni\Books";
+var files = Directory.EnumerateFiles(booksdir, "*.txt");
 
-FAResult fAResult = new FAResult()
+foreach (var file in files)
 {
-    Source = "file",
-    SourceType = SourceType.FILE
-};
+    var result = FreqAnalysis.FreqAnalysisFromFile(file);
 
-var dict = new Dictionary<string, int>();
-dict["key"] = 1;
+    var fileInfo = new FileInfo(file); 
+    Console.WriteLine(fileInfo.Name);
 
-Console.WriteLine(fAResult);
+    var orderedTop10 = result.OrderByDescending(kv => kv.Value).Take(10);
 
-fAResult.Words = dict;
-fAResult.Source = "soubor.txt";
-fAResult.SourceType = SourceType.FILE;
+    foreach (var item in orderedTop10)
+    {
+        Console.WriteLine($"{item.Key} - {item.Value}");
+    }
 
-Console.WriteLine(fAResult);
+    Console.WriteLine();
+}

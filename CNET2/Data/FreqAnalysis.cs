@@ -6,8 +6,14 @@
         {
            var result = new Dictionary<string, int>();
 
-            var words = input.Split(new String[] { " ", ",", ".", Environment.NewLine },
-                StringSplitOptions.RemoveEmptyEntries);
+            var words = input.Replace(Environment.NewLine, " ")
+                             .Replace("  "," ")
+                             .Replace("."," ")
+                             .Replace(","," ")
+                             .Replace(":", "")
+                             .Replace("(","")
+                             .Replace(")", "")
+                             .Split();
 
             foreach(var word in words)
             {
