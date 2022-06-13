@@ -7,23 +7,12 @@ Console.WriteLine("Hello, World!");
 
 int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 
-// WHERE - filtrace 
-//var result = numbers.Where(n => n > 0)
-//                    .Where(n => n < 99);
 
-//ORDEBY - razeni
-//var result = numbers.OrderBy(n => n);
+// 1. zjistete pocet kladnych cisel v poli numbers
 
-//AGREGACE Min,Max,Sum,Avg,Count
-//var number = ;
 
-//TAKE SKIP 
-//var result = numbers.TakeWhile(n => n > 0);
 
-// SELECT - transformace
-//var result = numbers.Select(n => Math.Abs(n));
 
-//Console.WriteLine(number);
 
 Console.WriteLine(string.Join(", ", result));
 
