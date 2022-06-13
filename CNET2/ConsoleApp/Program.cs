@@ -9,9 +9,13 @@ FAResult fAResult = new FAResult()
     SourceType = SourceType.FILE
 };
 
+var dict = new Dictionary<string, int>();
+dict["key"] = 1;
 
 Console.WriteLine(fAResult);
 
-fAResult.Words = new Dictionary<string, int>();
+fAResult.Words = dict;
+fAResult.Source = "soubor.txt";
+fAResult.SourceType = SourceType.FILE;
 
 Console.WriteLine(fAResult);
