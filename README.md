@@ -1,0 +1,1 @@
+# kubicek-skoleni
