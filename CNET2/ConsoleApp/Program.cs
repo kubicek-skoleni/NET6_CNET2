@@ -8,11 +8,12 @@ Console.WriteLine("Hello, World!");
 int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 
 
-// 2. ignorujte nejvetsi a nejmensi cislo, ze zbytku spocitejte prumer
+// 3. kolik sudych a kolik lichych cisel je v numbers
 
-var result = numbers.OrderBy(n => n).Skip(1).SkipLast(1).Average();
+var suda = numbers.Where(n => n % 2 == 0).Count();
+var licha = numbers.Where(n => n % 2 != 0).Count();
 
-Console.WriteLine(result);
+Console.WriteLine($"suda:{suda}, licha:{licha}");
 
 
 
