@@ -3,22 +3,37 @@ using Model;
 
 Console.WriteLine("Hello, World!");
 
-var booksdir = @"C:\Users\StudentEN\source\repos\kubicek-skoleni\Books";
-var files = Directory.EnumerateFiles(booksdir, "*.txt");
 
-foreach (var file in files)
+int[] cisla = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
+
+
+
+
+
+
+
+
+
+
+static void FreqWords()
 {
-    var result = FreqAnalysis.FreqAnalysisFromFile(file);
+    var booksdir = @"C:\Users\StudentEN\source\repos\kubicek-skoleni\Books";
+    var files = Directory.EnumerateFiles(booksdir, "*.txt");
 
-    var fileInfo = new FileInfo(file); 
-    Console.WriteLine(fileInfo.Name);
-
-    var orderedTop10 = result.Words.OrderByDescending(kv => kv.Value).Take(10);
-
-    foreach (var item in orderedTop10)
+    foreach (var file in files)
     {
-        Console.WriteLine($"{item.Key} - {item.Value}");
-    }
+        var result = FreqAnalysis.FreqAnalysisFromFile(file);
 
-    Console.WriteLine();
+        var fileInfo = new FileInfo(file);
+        Console.WriteLine(fileInfo.Name);
+
+        var orderedTop10 = result.Words.OrderByDescending(kv => kv.Value).Take(10);
+
+        foreach (var item in orderedTop10)
+        {
+            Console.WriteLine($"{item.Key} - {item.Value}");
+        }
+
+        Console.WriteLine();
+    }
 }
