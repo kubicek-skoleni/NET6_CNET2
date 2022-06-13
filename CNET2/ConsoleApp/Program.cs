@@ -5,15 +5,13 @@ using System.Linq;
 Console.WriteLine("Hello, World!");
 
 
-int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
+var numbers = new[] { 5, 4, 1, 3, 9, 8, 6, 7, 2, 0 };
+var strings = new[] { "zero", "one", "two", "three", "four",
+    "five", "six", "seven", "eight", "nine" };
+
+// vypište čísla v poli numbers jako slova
 
 
-// 3. kolik sudych a kolik lichych cisel je v numbers
-
-var suda = numbers.Where(n => n % 2 == 0).Count();
-var licha = numbers.Where(n => n % 2 != 0).Count();
-
-Console.WriteLine($"suda:{suda}, licha:{licha}");
 
 
 
