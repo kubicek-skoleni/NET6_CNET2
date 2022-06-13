@@ -13,7 +13,7 @@ foreach (var file in files)
     var fileInfo = new FileInfo(file); 
     Console.WriteLine(fileInfo.Name);
 
-    var orderedTop10 = result.OrderByDescending(kv => kv.Value).Take(10);
+    var orderedTop10 = result.Words.OrderByDescending(kv => kv.Value).Take(10);
 
     foreach (var item in orderedTop10)
     {

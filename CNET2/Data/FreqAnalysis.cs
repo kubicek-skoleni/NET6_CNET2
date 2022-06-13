@@ -1,4 +1,6 @@
-﻿namespace Data
+﻿using Model;
+
+namespace Data
 {
     public static class FreqAnalysis
     {
@@ -30,20 +32,31 @@
             return result;
         }
 
-        public static async Task<Dictionary<string, int>> FreqAnalysisFromUrl(string url)
+        public static async Task<FAResult> FreqAnalysisFromUrl(string url)
         {
             var httpClient = new HttpClient();
-
             var content = await httpClient.GetStringAsync(url);
+            var dict = FreqAnalysisFromString(content);
 
-            return FreqAnalysisFromString(content);
+            return new FAResult()
+            {
+                Source = url,
+                SourceType = SourceType.URL,
+                Words = dict
+            };
         }
 
-        public static Dictionary<string, int> FreqAnalysisFromFile(string file)
+        public static FAResult FreqAnalysisFromFile(string file)
         {
             var content = File.ReadAllText(file);
+            var dict = FreqAnalysisFromString(content);
 
-            return FreqAnalysisFromString(content);
+            return new FAResult()
+            {
+                Source = file,
+                SourceType = SourceType.FILE,
+                Words = dict
+            };
         }
     }
 }
