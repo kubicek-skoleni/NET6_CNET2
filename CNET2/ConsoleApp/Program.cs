@@ -11,11 +11,12 @@ var strings = new[] { "zero", "one", "two", "three", "four",
 
 // vypište čísla v poli numbers jako slova
 
+var result = numbers.Select(n => strings[n]);
 
 
 
 
-//Console.WriteLine(string.Join(", ", result));
+Console.WriteLine(string.Join(", ", result));
 
 //foreach (var item in result)
 //{
