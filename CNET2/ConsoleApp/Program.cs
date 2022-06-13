@@ -8,13 +8,15 @@ Console.WriteLine("Hello, World!");
 int[] numbers = { 11, 2, 13, 44, -5, 6, 127, -99, 0, 256 };
 
 
-// 1. zjistete pocet kladnych cisel v poli numbers
+// 2. ignorujte nejvetsi a nejmensi cislo, ze zbytku spocitejte prumer
+
+var result = numbers.OrderBy(n => n).Skip(1).SkipLast(1).Average();
+
+Console.WriteLine(result);
 
 
 
-
-
-Console.WriteLine(string.Join(", ", result));
+//Console.WriteLine(string.Join(", ", result));
 
 //foreach (var item in result)
 //{
