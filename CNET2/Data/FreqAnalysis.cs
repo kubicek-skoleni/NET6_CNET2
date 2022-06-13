@@ -2,9 +2,26 @@
 {
     public static class FreqAnalysis
     {
-        public static Dictionary<string, int> FreqAnalysisFromString(string input)
+        private static Dictionary<string, int> FreqAnalysisFromString(string input)
         {
-            throw new NotImplementedException();
+           var result = new Dictionary<string, int>();
+
+            var words = input.Split(new String[] { " ", ",", ".", Environment.NewLine },
+                StringSplitOptions.RemoveEmptyEntries);
+
+            foreach(var word in words)
+            {
+                if(result.ContainsKey(word))
+                {
+                    result[word] += 1;
+                }
+                else
+                {
+                    result.Add(word,1);
+                }
+            }
+
+            return result;
         }
 
         public static async Task<Dictionary<string, int>> FreqAnalysisFromUrl(string url)
