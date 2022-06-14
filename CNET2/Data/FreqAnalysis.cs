@@ -8,14 +8,7 @@ namespace Data
         {
            var result = new Dictionary<string, int>();
 
-            var words = input.Replace(Environment.NewLine, " ")
-                             .Replace("  "," ")
-                             .Replace("."," ")
-                             .Replace(","," ")
-                             .Replace(":", "")
-                             .Replace("(","")
-                             .Replace(")", "")
-                             .Split();
+            var words = input.Split(Environment.NewLine);
 
             foreach(var word in words)
             {
