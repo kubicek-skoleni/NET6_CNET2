@@ -29,6 +29,8 @@ namespace WpfApp
 
         private void btnLoadFiles_Click(object sender, RoutedEventArgs e)
         {
+            Mouse.OverrideCursor = Cursors.Wait;
+
             txbInfo.Text = "";
 
             var files = Directory.EnumerateFiles(@"C:\Users\StudentEN\source\repos\kubicek-skoleni\BigFiles","*.txt");
@@ -45,6 +47,8 @@ namespace WpfApp
                 }
 
             }
+
+            Mouse.OverrideCursor = null;
         }
     }
 }
