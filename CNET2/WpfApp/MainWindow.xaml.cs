@@ -51,7 +51,7 @@ namespace WpfApp
             Mouse.OverrideCursor = null;
         }
 
-        private void btnParallel1_Click(object sender, RoutedEventArgs e)
+        private async void btnParallel1_Click(object sender, RoutedEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Wait;
             Stopwatch s = Stopwatch.StartNew();
@@ -63,7 +63,7 @@ namespace WpfApp
                 txbInfo.Text += message;
             });
 
-            Parallel.ForEach(files, file =>
+            await Parallel.ForEachAsync(files, async (file, cancellationToken) =>
             {
                 var result = FreqAnalysis.FreqAnalysisFromFile(file);
 
@@ -77,7 +77,6 @@ namespace WpfApp
 
                 progress.Report(message);
             });
-
 
             s.Stop();
             progress.Report($"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}");
