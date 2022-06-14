@@ -1,0 +1,11 @@
+kdy použijete Dictionary
+
+popište rozdíl mezi "var" a "new()"
+
+příklad LINQ metody/operatoru, která vrací:
+* jedno číslo
+* stejný počet prvků, ale jiného typu jako vstup
+* stejný typ prvků, ale jiný počet
+* stejný počet, stejný typ
+
+kdy použijete statickou vs nestatickou metodu

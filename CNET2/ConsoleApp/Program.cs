@@ -13,9 +13,6 @@ var strings = new[] { "zero", "one", "two", "three", "four",
 
 var result = numbers.Select(n => strings[n]);
 
-
-
-
 Console.WriteLine(string.Join(", ", result));
 
 //foreach (var item in result)
