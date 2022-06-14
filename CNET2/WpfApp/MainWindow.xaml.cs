@@ -166,7 +166,7 @@ namespace WpfApp
             var t2 = Task.Run(() => WebLoad.LoadUrl(url2));
             var t3 = Task.Run(() => WebLoad.LoadUrl(url3));
 
-            int[] results = await Task.WhenAll(t1, t2, t3);
+            var results = await Task.WhenAll(t1, t2, t3);
 
             txbInfo.Text += $"Weby jsou dlouhé {string.Join(", ",results)}";
 
