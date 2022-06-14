@@ -1,6 +1,7 @@
 ﻿using Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -30,9 +31,8 @@ namespace WpfApp
         private void btnLoadFiles_Click(object sender, RoutedEventArgs e)
         {
             Mouse.OverrideCursor = Cursors.Wait;
-
+            Stopwatch s = Stopwatch.StartNew();
             txbInfo.Text = "";
-
             var files = Directory.EnumerateFiles(@"C:\Users\StudentEN\source\repos\kubicek-skoleni\BigFiles","*.txt");
 
             foreach(var file in files)
@@ -48,6 +48,8 @@ namespace WpfApp
 
             }
 
+            s.Stop();
+            txbInfo.Text += $"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}";
             Mouse.OverrideCursor = null;
         }
     }
