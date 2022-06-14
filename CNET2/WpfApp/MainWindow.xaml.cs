@@ -174,5 +174,40 @@ namespace WpfApp
             txbInfo.Text += $"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}";
             Mouse.OverrideCursor = null;
         }
+
+        private async void btnTaskWhenAllProgress_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+
+            IProgress<string> progress = new Progress<string>(message =>
+            {
+                txbInfo.Text += message + Environment.NewLine;
+            });
+
+            string[] urls = { "https://secccccccnam.cz",
+             "https://seznamzpravy.cz",
+             "https://www.google.com/",
+             "https://www.lidovky.cz/",
+             "https://www.novinky.cz/",
+             "https://www.bbc.co.uk/" };
+
+            List<Task<(int?, string, bool)>> tasks = new List<Task<(int?, string, bool)>>();
+
+            foreach(var url in urls)
+            {
+                tasks.Add(Task.Run(() => WebLoad.LoadUrl(url, progress)));
+            }
+
+            var results = await Task.WhenAll(tasks);
+
+            //txbInfo.Text += $"Weby jsou dlouhé {string.Join(", ", results)}";
+
+            s.Stop();
+            txbInfo.Text += $"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}";
+            Mouse.OverrideCursor = null;
+        }
     }
+    
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="Frekvenční analýza textu" Height="800" Width="900"
+        Title="Frekvenční analýza textu" Height="800" Width="950"
         Background="Beige">
     <Grid >
         <Grid.RowDefinitions>
@@ -20,6 +20,7 @@
         <Button x:Name="btnTaskAll" Content="Task All" Grid.Row="0" HorizontalAlignment="Left" Margin="420,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnTaskAll_Click"/>
         <Button x:Name="btnTaskWhenFirst" Content="When First" Grid.Row="0" HorizontalAlignment="Left" Margin="400,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnTaskWhenFirst_Click"/>
         <Button x:Name="btnTaskWhenAll" Content="When All" Grid.Row="0" HorizontalAlignment="Left" Margin="580,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnTaskWhenAll_Click"/>
+        <Button x:Name="btnTaskWhenAllProgress" Content="All Progress" Grid.Row="0" HorizontalAlignment="Left" Margin="740,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnTaskWhenAllProgress_Click"/>
 
 
         <ScrollViewer  HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" >
