@@ -128,5 +128,15 @@ namespace WpfApp
             txbInfo.Text += $"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}";
             Mouse.OverrideCursor = null;
         }
+
+        private void btnTaskWhenFirst_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnTaskWhenAll_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
