@@ -16,6 +16,8 @@
         <Button x:Name="btnLoadFiles" Content="Sekv." Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnLoadFiles_Click"/>
 
         <Button x:Name="btnParallel1" Content="Parallel" Grid.Row="0" HorizontalAlignment="Left" Margin="110,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnParallel1_Click"/>
+        <Button x:Name="btnTaskFirst" Content="Task First" Grid.Row="0" HorizontalAlignment="Left" Margin="250,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnTaskFirst_Click"/>
+        <Button x:Name="btnTaskAll" Content="Task All" Grid.Row="0" HorizontalAlignment="Left" Margin="420,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnTaskAll_Click"/>
 
 
         <ScrollViewer  HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" >

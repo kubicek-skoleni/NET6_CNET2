@@ -82,5 +82,51 @@ namespace WpfApp
             progress.Report($"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}");
             Mouse.OverrideCursor = null;
         }
+
+        private void btnTaskFirst_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+
+            string url1 = "https://seznam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://www.ictpro.cz/";
+
+            var t1 = Task.Run(() => WebLoad.LoadUrl(url1));
+            var t2 = Task.Run(() => WebLoad.LoadUrl(url2));
+            var t3 = Task.Run(() => WebLoad.LoadUrl(url3));
+
+            Task.WaitAny(t1, t2, t3);
+
+            txbInfo.Text += "Doběhl první task";
+
+            s.Stop();
+            txbInfo.Text += $"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}";
+            Mouse.OverrideCursor = null;
+        }
+
+        private void btnTaskAll_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+
+            string url1 = "https://seznam.cz";
+            string url2 = "https://seznamzpravy.cz";
+            string url3 = "https://www.ictpro.cz/";
+
+            var t1 = Task.Run(() => WebLoad.LoadUrl(url1));
+            var t2 = Task.Run(() => WebLoad.LoadUrl(url2));
+            var t3 = Task.Run(() => WebLoad.LoadUrl(url3));
+
+            Task.WaitAll(t1, t2, t3);
+
+            txbInfo.Text += "Doběhly všechny tasky";
+
+            s.Stop();
+            txbInfo.Text += $"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}";
+            Mouse.OverrideCursor = null;
+        }
     }
 }
