@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -11,11 +12,19 @@ namespace WpfApp
     {
         public static int LoadUrl(string url)
         {
-            HttpClient httpClient = new HttpClient();
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                var content = httpClient.GetStringAsync(url).Result;
+                return content.Length;
+            }
+            catch (Exception ex)
+            {
+                File.AppendAllText("errors.txt",
+                    $"{DateTime.Now} {ex.Message}{Environment.NewLine}");
 
-            var content = httpClient.GetStringAsync(url).Result;
-
-            return content.Length;
+                return -1;
+            }
         }
     }
 }
