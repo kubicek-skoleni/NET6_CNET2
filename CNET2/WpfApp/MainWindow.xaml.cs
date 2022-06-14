@@ -38,18 +38,49 @@ namespace WpfApp
             foreach(var file in files)
             {
                 var result = FreqAnalysis.FreqAnalysisFromFile(file);
-
                 txbInfo.Text += result.Source + Environment.NewLine;
 
                 foreach(var word in result.GetTop10())
                 {
                     txbInfo.Text += $"{word.Key} : {word.Value} {Environment.NewLine}";
                 }
-
             }
 
             s.Stop();
             txbInfo.Text += $"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}";
+            Mouse.OverrideCursor = null;
+        }
+
+        private void btnParallel1_Click(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = Cursors.Wait;
+            Stopwatch s = Stopwatch.StartNew();
+            txbInfo.Text = "";
+            var files = Directory.EnumerateFiles(@"C:\Users\StudentEN\source\repos\kubicek-skoleni\BigFiles", "*.txt");
+
+            IProgress<string> progress = new Progress<string>(message =>
+            {
+                txbInfo.Text += message;
+            });
+
+            Parallel.ForEach(files, file =>
+            {
+                var result = FreqAnalysis.FreqAnalysisFromFile(file);
+
+                string message = "";
+                message += result.Source + Environment.NewLine;
+
+                foreach (var word in result.GetTop10())
+                {
+                    message += $"{word.Key} : {word.Value} {Environment.NewLine}";
+                }
+
+                progress.Report(message);
+            });
+
+
+            s.Stop();
+            progress.Report($"{Environment.NewLine}elapsed milliseconds:{s.ElapsedMilliseconds}");
             Mouse.OverrideCursor = null;
         }
     }
