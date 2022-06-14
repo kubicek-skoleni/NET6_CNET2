@@ -13,9 +13,11 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
                 
-        <Button  x:Name="btnLoadFiles" Content="Načti soubory" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnLoadFiles_Click"/>
-        <TextBlock x:Name="txbInfo" HorizontalAlignment="Stretch" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Stretch" FontSize="24"/>
-
+        <Button x:Name="btnLoadFiles" Content="Načti soubory" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnLoadFiles_Click"/>
+        
+        <ScrollViewer  HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" >
+            <TextBlock x:Name="txbInfo" TextWrapping="Wrap" Text="TextBlock" FontSize="24"/>
+        </ScrollViewer>
 
     </Grid>
 </Window>
