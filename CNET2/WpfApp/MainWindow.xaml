@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Frekvenční analýza textu" Height="400" Width="600"
+        Background="Beige">
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+                
+        <Button  x:Name="btnLoadFiles" Content="Načti soubory" Grid.Row="0" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontSize="36" Click="btnLoadFiles_Click"/>
+        <TextBlock x:Name="txbInfo" HorizontalAlignment="Stretch" Grid.Row="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Stretch" FontSize="24"/>
+
 
     </Grid>
 </Window>

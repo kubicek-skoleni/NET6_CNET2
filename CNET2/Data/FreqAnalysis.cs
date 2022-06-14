@@ -28,7 +28,6 @@ namespace Data
                     result.Add(word,1);
                 }
             }
-
             return result;
         }
 

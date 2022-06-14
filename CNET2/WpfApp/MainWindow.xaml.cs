@@ -24,5 +24,10 @@ namespace WpfApp
         {
             InitializeComponent();
         }
+
+        private void btnLoadFiles_Click(object sender, RoutedEventArgs e)
+        {
+            txbInfo.Text = "Načítám soubory..";
+        }
     }
 }
