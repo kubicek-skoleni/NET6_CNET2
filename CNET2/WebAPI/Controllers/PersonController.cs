@@ -16,5 +16,14 @@ namespace WebAPI.Controllers
             return dataset;
         }
 
+        // hledani osoby podle emailu
+        [HttpGet("ByEmail/{email}")]
+        public Person GetByEmail(string email)
+        {
+            var dataset = Data.Serialization.LoadFromXML(@"C:\Users\StudentEN\source\repos\kubicek-skoleni\PersonDataset\dataset.xml");
+
+            return dataset.Where(p => p.Email.ToLower() == email.ToLower()).FirstOrDefault();
+        }
+
     }
 }
