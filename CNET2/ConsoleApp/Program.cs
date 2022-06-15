@@ -36,26 +36,27 @@ Console.WriteLine(dataset.Count());
 //var result_tuple = dataset.Select(p => (p.FullName, Age: p.Age()));
 
 //GROUPBY
-var result = dataset.GroupBy(p => p.HomeAddress.City);
+//var result = dataset.GroupBy(p => p.HomeAddress.City);
 
 // kolik lidi v jakem meste
-foreach (var g in result)
-{
-    Console.WriteLine();
-    Console.WriteLine($"Město: {g.Key}, počet lidí: {g.Count()}");
-
-    foreach(var person in g)
-    {
-        Console.WriteLine(person);
-    }
-}
+//foreach (var g in result)
+//{
+//    Console.WriteLine();
+//    Console.WriteLine($"Město: {g.Key}, počet lidí: {g.Count()}");
 
 // vypiste lidi podle mest
+//    foreach(var person in g)
+//    {
+//        Console.WriteLine(person);
+//    }
+//}
 
 
+//SELECT MANY - ziskat vsechny smlouvy
+var result = dataset.SelectMany(p => p.Contracts);
 
 
-
+Console.WriteLine($"počet smluv celkem: {result.Count()}");
 
 
 
