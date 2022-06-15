@@ -6,6 +6,10 @@ Console.WriteLine("Hello, World!");
 
 var dataset = Data.Serialization.LoadFromXML();
 
+using var db = new PeopleContext();
+
+//db.Persons.AddRange(dataset);
+//db.SaveChanges();
 
 
 
