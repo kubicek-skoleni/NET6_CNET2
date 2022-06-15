@@ -30,19 +30,27 @@ Console.WriteLine(dataset.Count());
 //Console.WriteLine($"nejstarší je {nejstarsi.FullName} ({nejstarsi.Age()})");
 
 // anonymni typ
-var result_anon = dataset.Select(p => new { p.FullName, Age = p.Age() });
+//var result_anon = dataset.Select(p => new { p.FullName, Age = p.Age() });
 
 //tuple
-var result_tuple = dataset.Select(p => (p.FullName, Age: p.Age()));
+//var result_tuple = dataset.Select(p => (p.FullName, Age: p.Age()));
 
+//GROUPBY
+var result = dataset.GroupBy(p => p.HomeAddress.City);
 
-
-foreach (var item in result)
+// kolik lidi v jakem meste
+foreach (var g in result)
 {
-    Console.WriteLine(item.FullName + " " + item.Age);
+    Console.WriteLine();
+    Console.WriteLine($"Město: {g.Key}, počet lidí: {g.Count()}");
+
+    foreach(var person in g)
+    {
+        Console.WriteLine(person);
+    }
 }
 
-
+// vypiste lidi podle mest
 
 
 
