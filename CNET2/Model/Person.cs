@@ -34,7 +34,7 @@ namespace Model
             }
         }
 
-        public DateOnly DateOfBirth { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
         public Address HomeAddress { get; set; } = new Address();
         public string Email { get; set; }
