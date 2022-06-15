@@ -61,7 +61,7 @@ Console.WriteLine(dataset.Count());
 var withContract = dataset.Where(p => p.Contracts.Any());
 
 var result = withContract
-    .OrderByDescending(p => p.Contracts.OrderByDescending(c => c.Signed).First().Signed)
+    .OrderByDescending(p => p.Contracts.OrderBy(c => c.Signed).Last().Signed)
     .First();
 
 Console.WriteLine(result);
