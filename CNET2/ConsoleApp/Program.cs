@@ -56,21 +56,7 @@ Console.WriteLine(dataset.Count());
 //var result = dataset.SelectMany(p => p.Contracts);
 //Console.WriteLine($"počet smluv celkem: {result.Count()}");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 // kdo s nami jako posledni uzavrel smlouvu
-
 // osobu 
 var withContract = dataset.Where(p => p.Contracts.Any());
 
