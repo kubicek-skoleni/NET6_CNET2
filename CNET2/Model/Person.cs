@@ -68,6 +68,12 @@ namespace Model
         public string GetFullName()
             => $"{FirstName} {LastName}";
 
+        public string GetFullName(string title)
+            => $"{title} {FirstName} {LastName}";
+
+        public string GetFullName(string titleBefore, string titleAfter)
+           => $"{titleBefore}{FirstName} {LastName} {titleAfter}";
+
         #endregion
 
     }

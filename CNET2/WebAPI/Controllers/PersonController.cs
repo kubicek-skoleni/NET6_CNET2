@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Data;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Model;
 
 namespace WebAPI.Controllers
@@ -8,21 +10,38 @@ namespace WebAPI.Controllers
     [ApiController]
     public class PersonController : ControllerBase
     {
+        private readonly PeopleContext _db;
+
+        public PersonController(PeopleContext db)
+        {
+            _db = db;
+        }
 
         [HttpGet("GetAll")]
-        public List<Person> GetPeople()
+        public IEnumerable<Person> GetPeople()
         {
-            var dataset = Data.Serialization.LoadFromXML(@"C:\Users\StudentEN\source\repos\kubicek-skoleni\PersonDataset\dataset.xml");
-            return dataset;
+            return _db.Persons
+                .Include(x => x.Contracts)
+                .Include(x => x.HomeAddress);
+        }
+
+        // hledani osoby podle emailu
+        [HttpGet("{id}")]
+        public Person GetById(int id)
+        {
+            return _db.Persons.Include(x => x.Contracts)
+                .Include(x => x.HomeAddress)
+                .FirstOrDefault(p => p.Id == id);
+
         }
 
         // hledani osoby podle emailu
         [HttpGet("ByEmail/{email}")]
         public Person GetByEmail(string email)
         {
-            var dataset = Data.Serialization.LoadFromXML(@"C:\Users\StudentEN\source\repos\kubicek-skoleni\PersonDataset\dataset.xml");
-
-            return dataset.Where(p => p.Email.ToLower() == email.ToLower()).FirstOrDefault();
+            return _db.Persons.Include(x => x.Contracts)
+                .Include(x => x.HomeAddress)
+                .Where(p => p.Email.ToLower() == email.ToLower()).FirstOrDefault();
         }
 
     }
