@@ -34,10 +34,9 @@ namespace Model
             }
         }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
 
-        public Address HomeAddress { get; set; }
-                                        = new Address();
+        public Address HomeAddress { get; set; } = new Address();
         public string Email { get; set; }
 
         public List<Contract> Contracts { get; set; }
@@ -46,7 +45,7 @@ namespace Model
 
         #region metody
         public override string ToString()
-            => $"{FirstName} {LastName}";
+            => GetFullName();
 
 
         public int Age()
