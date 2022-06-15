@@ -53,17 +53,41 @@ Console.WriteLine(dataset.Count());
 
 
 //SELECT MANY - ziskat vsechny smlouvy
-var result = dataset.SelectMany(p => p.Contracts);
-
-
-Console.WriteLine($"počet smluv celkem: {result.Count()}");
-
+//var result = dataset.SelectMany(p => p.Contracts);
+//Console.WriteLine($"počet smluv celkem: {result.Count()}");
 
 
 
 
 
 
+
+
+
+
+
+
+
+
+// kdo s nami jako posledni uzavrel smlouvu
+
+// osobu 
+var withContract = dataset.Where(p => p.Contracts.Any());
+
+var result = withContract
+    .OrderByDescending(p => p.Contracts.OrderByDescending(c => c.Signed).First().Signed)
+    .First();
+
+Console.WriteLine(result);
+
+// ALTERNATIVNI RESENI
+
+Contract con = dataset.SelectMany(c => c.Contracts).OrderBy(c => c.Signed).Last();
+var per = dataset.Where(p => p.Contracts.Contains(con));
+foreach (var item in per)
+{
+    Console.WriteLine(item);
+}
 
 
 
