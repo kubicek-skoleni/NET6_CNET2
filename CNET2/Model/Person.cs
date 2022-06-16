@@ -39,6 +39,8 @@ namespace Model
         public DateTime DateOfBirth { get; set; }
 
         public Address HomeAddress { get; set; } = new Address();
+
+
         public string Email { get; set; }
 
         public List<Contract> Contracts { get; set; }

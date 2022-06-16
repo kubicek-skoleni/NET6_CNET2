@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(PeopleContext))]
-    [Migration("20220615131812_init")]
+    [Migration("20220616085845_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,6 +45,23 @@ namespace Data.Migrations
                     b.ToTable("Addresses");
                 });
 
+            modelBuilder.Entity("Model.Company", b =>
+                {
+                    b.Property<int>("ComId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ComId"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ComId");
+
+                    b.ToTable("Companies");
+                });
+
             modelBuilder.Entity("Model.Contract", b =>
                 {
                     b.Property<int>("Id")
@@ -52,6 +69,9 @@ namespace Data.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("CompanyComId")
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -71,6 +91,8 @@ namespace Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CompanyComId");
 
                     b.HasIndex("PersonId");
 
@@ -112,9 +134,15 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Model.Contract", b =>
                 {
+                    b.HasOne("Model.Company", "Company")
+                        .WithMany()
+                        .HasForeignKey("CompanyComId");
+
                     b.HasOne("Model.Person", null)
                         .WithMany("Contracts")
                         .HasForeignKey("PersonId");
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("Model.Person", b =>

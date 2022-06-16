@@ -29,10 +29,9 @@ namespace WebAPI.Controllers
         [HttpGet("{id}")]
         public Person GetById(int id)
         {
-            return _db.Persons.Include(x => x.Contracts)
+            return  _db.Persons.Include(x => x.Contracts)
                 .Include(x => x.HomeAddress)
                 .FirstOrDefault(p => p.Id == id);
-
         }
 
         // hledani osoby podle emailu

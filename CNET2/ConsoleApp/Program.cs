@@ -1,4 +1,5 @@
 ﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using Model;
 using System.Linq;
 
@@ -11,7 +12,16 @@ using var db = new PeopleContext();
 //db.Persons.AddRange(dataset);
 //db.SaveChanges();
 
+var person = db.Persons
+    .Include(x => x.Contracts)
+    .ThenInclude(x => x.Company)
+    .Where(x => x.Contracts.Count() > 0)
+    .First();
 
+person.Contracts.First().Company = new Company() { Name = "Test Company" };
+db.SaveChanges();
+
+Console.WriteLine("ok");
 
 
 

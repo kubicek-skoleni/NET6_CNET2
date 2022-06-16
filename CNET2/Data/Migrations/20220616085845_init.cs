@@ -24,6 +24,19 @@ namespace Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Companies",
+                columns: table => new
+                {
+                    ComId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Companies", x => x.ComId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Persons",
                 columns: table => new
                 {
@@ -56,17 +69,28 @@ namespace Data.Migrations
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Signed = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CompanyComId = table.Column<int>(type: "int", nullable: true),
                     PersonId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Contracts", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Contracts_Companies_CompanyComId",
+                        column: x => x.CompanyComId,
+                        principalTable: "Companies",
+                        principalColumn: "ComId");
+                    table.ForeignKey(
                         name: "FK_Contracts_Persons_PersonId",
                         column: x => x.PersonId,
                         principalTable: "Persons",
                         principalColumn: "Id");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contracts_CompanyComId",
+                table: "Contracts",
+                column: "CompanyComId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Contracts_PersonId",
@@ -83,6 +107,9 @@ namespace Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Contracts");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "Persons");
