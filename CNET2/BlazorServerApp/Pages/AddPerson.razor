@@ -6,11 +6,46 @@
 
 <div class="mb-3">
   <label for="firstname" class="form-label">Jméno</label>
-  <input type="text" class="form-control" id="firstname" placeholder="Jmémo">
+  <input @bind-value=Person.FirstName type="text" class="form-control" id="firstname" placeholder="Jmémo">
+</div>
+<div class="mb-3">
+  <label for="lastname" class="form-label">Příjmení</label>
+  <input @bind-value=Person.LastName type="text" class="form-control" id="lastname" placeholder="Příjmení">
+</div>
+<div class="mb-3">
+  <label for="email" class="form-label">Email address</label>
+  <input @bind-value=Person.Email type="email" class="form-control" id="email" placeholder="name@example.com">
 </div>
 
+<div>
+    @message
+</div>
+
+<button class="btn btn-primary" @onclick=Save>Ulož</button>
+
+
 @code {
+    public Person Person { get; set; } = new Person();
 
-    public Person Person { get; set; }
+    string message = "";
 
+    void Save()
+    {
+        if(Person.Id > 0)
+        {
+            // edituji
+            db.SaveChanges();
+        }
+        else
+        {
+            //pridavam novou 
+
+            Person.HomeAddress = new Address(){City = "", Street = ""};
+            db.Persons.Add(Person);
+            db.SaveChanges();
+        }
+
+        message = $"OK {Person.Id} {DateTime.Now}";
+
+    }
 }
