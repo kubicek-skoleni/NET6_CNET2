@@ -1,9 +1,23 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+@using Model
+@inject PeopleContext db
 
-<h1>Hello, world!</h1>
+<PageTitle>Počet lidí v db</PageTitle>
 
-Welcome to your new app.
+<h1>Počet lidí v db</h1>
+<span>@count</span>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+
+@code{
+    int count;
+
+    protected override void OnInitialized()
+    {
+        count = db.Persons.Count();
+    }
+}
+
+
+
+
