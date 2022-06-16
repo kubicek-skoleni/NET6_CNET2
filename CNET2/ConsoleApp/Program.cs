@@ -8,17 +8,14 @@ Console.WriteLine("Hello, World!");
 var dataset = Data.Serialization.LoadFromXML();
 
 using var db = new PeopleContext();
+var contract = db.Contracts.Include(x => x.Company).First();
+var company = contract.Company;
 
-//db.Persons.AddRange(dataset);
-//db.SaveChanges();
+Console.WriteLine($"contract-company: {company.Name}");
 
-var person = db.Persons
-    .Include(x => x.Contracts)
-    .ThenInclude(x => x.Company)
-    .Where(x => x.Contracts.Count() > 0)
-    .First();
+contract.Company = null;
+db.Companies.Remove(company);
 
-person.Contracts.First().Company = new Company() { Name = "Test Company" };
 db.SaveChanges();
 
 Console.WriteLine("ok");

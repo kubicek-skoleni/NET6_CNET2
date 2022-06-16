@@ -1,11 +1,14 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Model
 {
+    [Index(nameof(Email))]
     public class Person
     {
         #region konstruktory
@@ -24,7 +27,11 @@ namespace Model
         #region vlastnosti
 
         public int Id { get; set; }
+
+        [MaxLength(250)]
         public string FirstName { get; set; } = "John";
+
+        [MaxLength(250)]
 
         public string LastName { get; set; } = "Doe";
 
@@ -41,6 +48,8 @@ namespace Model
         public Address HomeAddress { get; set; } = new Address();
 
 
+        [MaxLength(270)]
+        [Required]
         public string Email { get; set; }
 
         public List<Contract> Contracts { get; set; }
